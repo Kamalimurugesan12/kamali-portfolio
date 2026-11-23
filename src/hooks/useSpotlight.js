@@ -1,0 +1,14 @@
+import { useCallback } from 'react';
+
+/**
+ * Pointer-follow spotlight: writes --mx / --my (in px, relative to the card)
+ * so CSS can paint a soft light under the cursor.
+ */
+export default function useSpotlight() {
+  return useCallback((e) => {
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  }, []);
+}
